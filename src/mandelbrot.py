@@ -45,7 +45,7 @@ def mandelbrot(
     imag_high: float = 2.0,
     max_iters: int = 100,
     upper_bound: float = 2.0
-):
+) -> np.ndarray:
     real_vals = np.linspace(real_low, real_high, width)
     imag_vals = np.linspace(imag_high, imag_low, height)
 
@@ -54,7 +54,7 @@ def mandelbrot(
     return mandelbrot_graph
 
 
-def _build_mandelbrot_kernel():
+def _build_mandelbrot_kernel() -> ElementwiseKernel:
     return ElementwiseKernel(
         "pycuda::complex<float> *lattice,"
         "float *mandelbrot_graph,"
@@ -129,7 +129,7 @@ def mandelbrot_cpu(
     return mandelbrot_graph
 
 
-def main():
+def main() -> int:
     width, height = 512, 512
 
     for mandel_func, label in (
