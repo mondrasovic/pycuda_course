@@ -106,41 +106,6 @@ def mandelbrot_gpu(
     return mandelbrot_graph
 
 
-# def mandelbrot(
-#     shape,
-#     real_range=(-2.0, 2.0),
-#     imag_range=(-2.0, 2.0),
-#     max_iters=100,
-#     upper_bound=2.0
-# ):
-#     height, width = shape
-
-#     real_low, real_high = real_range
-#     imag_low, imag_high = imag_range
-
-#     real_vals = np.linspace(real_low, real_high, width, dtype=np.complex64)
-#     imag_vals = np.linspace(
-#         imag_high, imag_low, height, dtype=np.complex64
-#     ) * 1j
-
-#     mandelbrot_lattice = real_vals[None, ...] + (imag_vals[..., None])
-#     mandelbrot_lattice_gpu = gpuarray.to_gpu(mandelbrot_lattice)
-
-#     mandelbrot_graph_gpu = gpuarray.empty(
-#         shape=mandelbrot_lattice.shape, dtype=np.float32
-#     )
-
-#     mandelbrot_ker = build_mandelbrot_kernel()
-#     mandelbrot_ker(
-#         mandelbrot_lattice_gpu, mandelbrot_graph_gpu, np.int32(max_iters),
-#         np.float32(upper_bound)
-#     )
-
-#     mandelbrot_graph = mandelbrot_graph_gpu.get()
-
-#     return mandelbrot_graph
-
-
 def mandelbrot_cpu(
     real_vals: np.ndarray, imag_vals: np.ndarray, max_iters: int,
     upper_bound: float
