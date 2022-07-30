@@ -1,5 +1,9 @@
 sandbox.ipynb
 
+*.exe
+*.exp
+*.lib
+
 *.jpeg
 *.jpg
 *.png
