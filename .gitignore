@@ -4,12 +4,12 @@ sandbox.ipynb
 *.exp
 *.lib
 
-*.jpeg
-*.jpg
-*.png
-*.bmp
-*.pdf
-*.svg
+src/*.jpeg
+src/*.jpg
+src/*.png
+src/*.bmp
+src/*.pdf
+src/*.svg
 
 .vscode
 
