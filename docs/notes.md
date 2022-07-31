@@ -2,14 +2,19 @@
 
 ## Abbreviations
 
-* **CUDA** - Compute Unified Device Architecture.
-* **CPU** - Central Processing Unit.
-* **GPU** - Graphics Processing Unit.
-* **GPGPU** - General Purpose Graphics Processing Unit.
-* **SM** - Streaming Multiprocessor.
-* **SIMD** - Single Instruction Multiple Data.
-* **SSE** - Streaming SIMD Extensions.
-* **GIL** - Global Interpreter Lock (In Python).
+* **BLAS** - Basic Linear Algebra Subprograms
+* **CPU** - Central Processing Unit
+* **CUDA** - Compute Unified Device Architecture
+* **FFT** - Fast Fourier Transform
+* **GIL** - Global Interpreter Lock (In Python)
+* **GPGPU** - General Purpose Graphics Processing Unit
+* **GPU** - Graphics Processing Unit
+* **GeMM** - General Matrix Multiply
+* **GeMV** - General Matrix-Vector Multiply
+* **SIMD** - Single Instruction Multiple Data
+* **SM** - Streaming Multiprocessor
+* **SSE** - Streaming SIMD Extensions
+* **SVD** - Singular Value Decomposition
 
 ## Terms and Definitions
 
@@ -37,6 +42,9 @@
 * **Event** - An object that exists on the GPU the purpose of which is to act as a milestone or progress marker for a stream of operations.
   * *It can be effectively exploited to time the execution of specific operations.*
 * **Context** - A context is analogous to a process in an operating system. Each program thread is assigned a unique context within which its GPU execution takes place.
+* **Branch divergence** - It happens when one thread in a kernel satisfies the conditions to be in an `if` statement, while another doesn't and is in the `else` statement.
+* **Warp** - A group of threads, $32$ lanes.
+* **Warp lockstep property** - Multiple threads in a single warp need to be in a *lockstep* as marines marching, therefore only the very same piece of code can be executed even if branch divergence is present.
 
 ## Amdahl's Law
 
@@ -69,6 +77,14 @@ threadId = blockId * (blockDim.x * blockDim.y) + (blockDim.x * threadIdx.x) + th
 | :---: |
 | *Visualization of the CUDA indexing scheme. ([source](http://harmanani.github.io/classes/csc447/Notes/Lecture15.pdf)* |
 
+## BLAS
+
+* It stands for **Basic Linear Algebra Subprograms**.
+* It is a **specification** for basic linear algebra library **standardized** in the 1970s.
+* BLAS functions are broken down into several **categories**, which are referred to as **levels**.
+  * Level 1 - **AXPY** - **vector-vector addition and scaling**, i.e., $a\mathbf{x} + \mathbf{y}$ operations, such that $a \in \mathbb{R}$ and $\mathbf{x}, \mathbf{y} \in \mathbb{R}^n$, **dot products**, and **norms**.
+  * Level 2 - **GEMV** - **matrix multiplication of a vector**.
+  * Level 3 - **GEMM** - **general matrix-matrix** operations.
 ## Useful commands
 
 * Run **Python profiler** and output **cumulative running time** for individual functions and methods.
